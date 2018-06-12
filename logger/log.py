@@ -1,4 +1,5 @@
-
+import mysql.connector as mariadb
+import datetime
 import os
 import sys
 import psutil
@@ -37,15 +38,29 @@ def getDf():
         if i==2:
             return(line.split()[0:6])
 
+mariadb_connection = mariadb.connect(user='monitoring_user', password='vkkz@QfvoU7Mh&Y3LhJSfi!Oakc6#h', database='monitoring')
+cursor = mariadb_connection.cursor()
+
+a = datetime.datetime.now()
 
 description = getDfDescription()
 disk_root = getDf()
 
 cpu = getCpuLoad()
-print("cpu 0  % : {}".format(cpu[0]))
-print("cpu 1  % : {}".format(cpu[1]))
-print("cpu 2  % : {}".format(cpu[2]))
-print("cpu 3  % : {}".format(cpu[3]))
-print("cputmp c : {}".format(getCputemp()))
-print("disk   % : {}".format(re.search('(\d+)',disk_root[4]).group(0)))
-print("memory % : {}".format(getCurrentMemoryUsage()))
+query = "INSERT INTO log (cpu0, cp1, cpu2, cpu3, cpu_temp, storage, memory) VALUES ({}, {}, {}, {}, {}, {}, {})".format(cpu[0], cpu[1], cpu[2], cpu[3], getCputemp(), re.search('(\d+)',disk_root[4]).group(0)$
+cursor.execute(query)
+
+#print("cpu 0  % : {}".format(cpu[0]))
+#print("cpu 1  % : {}".format(cpu[1]))
+#print("cpu 2  % : {}".format(cpu[2]))
+#print("cpu 3  % : {}".format(cpu[3]))
+#print("cputmp c : {}".format(getCputemp()))
+#print("disk   % : {}".format(re.search('(\d+)',disk_root[4]).group(0)))
+#print("memory % : {}".format(getCurrentMemoryUsage()))
+mariadb_connection.commit()
+b = datetime.datetime.now()
+delta = b - a
+print(int(delta.total_seconds() * 1000))
+
+
+mariadb_connection.close()
