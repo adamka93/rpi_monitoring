@@ -1,0 +1,38 @@
+cpu_temp
++--------------+----------+------+-----+-------------------+----------------+
+| Field        | Type     | Null | Key | Default           | Extra          |
++--------------+----------+------+-----+-------------------+----------------+
+| id           | int(11)  | NO   | PRI | NULL              | auto_increment |
+| measure_date | datetime | YES  |     | CURRENT_TIMESTAMP |                |
+| temp         | float    | YES  |     | NULL              |                |
++--------------+----------+------+-----+-------------------+----------------+
+
+cpu_usage;
++--------------+----------+------+-----+-------------------+----------------+
+| Field        | Type     | Null | Key | Default           | Extra          |
++--------------+----------+------+-----+-------------------+----------------+
+| id           | int(11)  | NO   | PRI | NULL              | auto_increment |
+| measure_date | datetime | YES  |     | CURRENT_TIMESTAMP |                |
+| cpu0         | float    | YES  |     | NULL              |                |
+| cpu1         | float    | YES  |     | NULL              |                |
+| cpu2         | float    | YES  |     | NULL              |                |
+| cpu3         | float    | YES  |     | NULL              |                |
++--------------+----------+------+-----+-------------------+----------------+
+
+disk_usage;
++--------------+----------+------+-----+-------------------+----------------+
+| Field        | Type     | Null | Key | Default           | Extra          |
++--------------+----------+------+-----+-------------------+----------------+
+| id           | int(11)  | NO   | PRI | NULL              | auto_increment |
+| measure_date | datetime | YES  |     | CURRENT_TIMESTAMP |                |
+| disk         | float    | YES  |     | NULL              |                |
++--------------+----------+------+-----+-------------------+----------------+
+
+memory_usage;
++--------------+----------+------+-----+-------------------+----------------+
+| Field        | Type     | Null | Key | Default           | Extra          |
++--------------+----------+------+-----+-------------------+----------------+
+| id           | int(11)  | NO   | PRI | NULL              | auto_increment |
+| measure_date | datetime | YES  |     | CURRENT_TIMESTAMP |                |
+| memory       | float    | YES  |     | NULL              |                |
++--------------+----------+------+-----+-------------------+----------------+
