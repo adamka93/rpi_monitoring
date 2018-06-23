@@ -267,7 +267,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<span>Summary</span>
 			</div>
 			<div class="box-body inner">
-				<div id="area-chart" ></div>
+				<div class="row to_center">
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+										<?php
+											$data = array();
+											$data["data"] = $last_temp[0]["temp"];
+											$data["text"] = "CPU Temp";
+										?>
+										<?php $this->view('gauge', $data); ?>
+									</div>
+									
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+										<?php
+											$data = array();
+											$data["data"] = $last_memory[0]["memory"];
+											$data["text"] = "Memory usage";
+										?>
+										<?php $this->view('gauge', $data); ?>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+										<?php
+											$data = array();
+											$data["data"] = $last_disc[0]["disk"];
+											$data["text"] = "Disc usage";
+										?>
+										<?php $this->view('gauge', $data); ?>
+									</div>
 			</div>
 		</div>
 	</div>
