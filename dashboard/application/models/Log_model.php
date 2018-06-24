@@ -39,12 +39,31 @@ class Log_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 	}
-
 	public function getCpuTemperature(){
-		$this->db->select('measure_date, cpu_temp');
+		$this->db->select('measure_date, cpu_temp as temp');
 		$this->db->from('log');	
 		$this->db->order_by('measure_date', 'DESC');
 		$this->db->limit(30);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+	public function getLogInIntervall($hw, $start, $end){
+		$this->db->select("*");
+		$this->db->from($hw);
+		$this->db->where("measure_date >=", $start);
+		$this->db->where("measure_date <=", $end);
+		
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function getLastBefore($hw, $start){
+		$this->db->select("*");
+		$this->db->from($hw);
+		$this->db->where("measure_date <=", $start);
+		$this->db->order_by('id', 'DESC');
+		$this->db->limit(1);
+
 		$query = $this->db->get();
 		return $query->result_array();
 	}

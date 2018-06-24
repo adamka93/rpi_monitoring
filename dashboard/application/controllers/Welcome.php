@@ -23,4 +23,30 @@ class Welcome extends CI_Controller {
 	{
 		echo json_encode($this->log_model->getCpuTemperature());
 	}
+
+	public function allPage(){
+		$retrn = [];
+
+		$start = $this->input->get("start");
+		$end = $this->input->get("end");
+
+		if(!$start || !$end)
+			return "{}";
+
+		$retrn['cpu'] = [];
+		$retrn['cpu']['data'] = $this->log_model->getLogInIntervall("cpu_temp", $start, $end);
+		$retrn['cpu']['before'] = $this->log_model->getLastBefore("cpu_temp", $start);
+
+		$retrn['cpuu']['data'] = $this->log_model->getLogInIntervall("cpu_usage", $start, $end);
+		$retrn['cpuu']['before'] = $this->log_model->getLastBefore("cpu_usage", $start);
+
+		$retrn['hdd']['data'] = $this->log_model->getLogInIntervall("disk_usage", $start, $end);
+		$retrn['hdd']['before'] = $this->log_model->getLastBefore("disk_usage", $start);
+
+		$retrn['ram']['data'] = $this->log_model->getLogInIntervall("memory_usage", $start, $end);
+		$retrn['ram']['before'] = $this->log_model->getLastBefore("memory_usage", $start);
+
+		//todo: itt kell a többit is majd
+		echo json_encode($retrn);
+	}
 }
